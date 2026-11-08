@@ -1,0 +1,182 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Calculator</title><style>
+    * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #0b1020;
+    }
+
+    .calculator {
+        width: 350px;
+        background: #f4f4f4;
+        padding: 20px;
+        border-radius: 25px;
+        box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    }
+
+    .display {
+        width: 100%;
+        height: 120px;
+        border: none;
+        background: white;
+        font-size: 45px;
+        text-align: right;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 15px;
+        outline: none;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+    }
+
+    #display {
+        white-space: nowrap;
+        width: 100%;
+    }
+
+    .scrolling {
+        width: max-content !important;
+        animation: scrollLeft 3s linear infinite;
+        color: #2463a5;
+        font-weight: bold;
+    }
+
+    @keyframes scrollLeft {
+        0% {
+            transform: translateX(350px);
+        }
+
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+    }
+
+    button {
+        height: 65px;
+        border: none;
+        border-radius: 50%;
+        font-size: 25px;
+        cursor: pointer;
+        background: #d1d1d1;
+    }
+
+    .number {
+        background: #59b7e8;
+        color: #08213d;
+    }
+
+    .operator {
+        background: #2463a5;
+        color: white;
+    }
+
+    .clear {
+        background: #aaaaaa;
+    }
+
+    button:active {
+        transform: scale(0.92);
+    }
+
+    /* Coded By */
+    .credit {
+        text-align: center;
+        font-size: 13px;
+        color: #777777;
+        margin-top: 20px;
+        margin-bottom: 0;
+        letter-spacing: 1px;
+    }
+
+</style></head><body><div class="calculator"><div class="display">
+    <div id="display"></div>
+</div>
+
+<div class="buttons">
+
+    <button class="clear" onclick="clearDisplay()">AC</button>
+    <button onclick="add('(')">(</button>
+    <button onclick="add(')')">)</button>
+    <button class="operator" onclick="add('/')">÷</button>
+
+    <button class="number" onclick="add('7')">7</button>
+    <button class="number" onclick="add('8')">8</button>
+    <button class="number" onclick="add('9')">9</button>
+    <button class="operator" onclick="add('*')">×</button>
+
+    <button class="number" onclick="add('4')">4</button>
+    <button class="number" onclick="add('5')">5</button>
+    <button class="number" onclick="add('6')">6</button>
+    <button class="operator" onclick="add('-')">−</button>
+
+    <button class="number" onclick="add('1')">1</button>
+    <button class="number" onclick="add('2')">2</button>
+    <button class="number" onclick="add('3')">3</button>
+    <button class="operator" onclick="add('+')">+</button>
+
+    <button class="number" onclick="add('0')">0</button>
+    <button class="number" onclick="add('.')">.</button>
+    <button class="operator" style="grid-column: span 2; border-radius: 35px;"
+    onclick="calculate()">=</button>
+
+</div>
+
+<p class="credit">Coded by: maverick</p>
+
+</div><script>
+
+function add(value) {
+    let display = document.getElementById("display");
+
+    display.classList.remove("scrolling");
+    display.innerText += value;
+}
+
+function clearDisplay() {
+    let display = document.getElementById("display");
+
+    display.innerText = "";
+    display.classList.remove("scrolling");
+}
+
+function calculate() {
+
+    let display = document.getElementById("display");
+    let input = display.innerText;
+
+    // Secret calculator message
+    if (input === "140+3") {
+        display.innerText = "I LOVEE YOUU ROANNE";
+        display.classList.add("scrolling");
+    } 
+    else {
+        display.classList.remove("scrolling");
+
+        try {
+            display.innerText = eval(input);
+        } 
+        catch {
+            display.innerText = "Error";
+        }
+    }
+}
+
+</script></body>
+</html>
